@@ -60,7 +60,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a href="bin_convert.html" class="nav-link text-white">
           <svg class="bi pe-none me-2" width="16" height="16">
             <use xlink:href="#speedometer2" />
           </svg>
@@ -133,11 +133,11 @@
   </div>
 
   <script>
-      const btn = document.getElementsByName("convert")[0];
-      btn.onclick = process;
+      const btn = document.getElementsByName("convert")[0]
+      btn.onclick = process
       function process() {
-        const inputnum = document.querySelector("#inputnum");
-        const outputnum = document.querySelector("#outputnum");
+        const inputnum = document.querySelector("#inputnum")
+        const outputnum = document.querySelector("#outputnum")
         const inputbaseNodeList = document.getElementsByName("inputbase")
         const outputbaseNodeList = document.getElementsByName("outputbase")
         var temp
@@ -154,7 +154,7 @@
            temp = temp.toString(outputbase)
           }
         })
-        outputnum.value = temp;
+        outputnum.value = temp
       }
   </script>
 </body>

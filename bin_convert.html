@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="../assets/js/color-modes.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.112.5">
+  <title>진수 변환기</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cheatsheet/">
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/cheatsheet.css" rel="stylesheet">
+  <link href="./css/sidebars.css" rel="stylesheet">
+  <style>
+    #content {
+      margin-top: 20vh;
+      margin-left: 200px;
+    }
+    #btn_wrapper{
+	  width: 500px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+    "btn15 btn14 btn13 btn12 . btn11 btn10 btn9 btn8"
+    "btn7 btn6 btn5 btn4 . btn3 btn2 btn1 btn0";
+  }
+  #bin_buttons {
+    margin-left: 5%;
+  }
+  .btn{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+  }
+  .bin0 { grid-area: btn0; }
+  .bin1 { grid-area: btn1; }   
+  .bin2 { grid-area: btn2; }   
+  .bin3 { grid-area: btn3; }   
+  .bin4 { grid-area: btn4; }   
+  .bin5 { grid-area: btn5; }   
+  .bin6 { grid-area: btn6; }   
+  .bin7 { grid-area: btn7; }
+  .bin8 { grid-area: btn8; }
+  .bin9 { grid-area: btn9; }   
+  .bin10 { grid-area: btn10; }   
+  .bin11 { grid-area: btn11; }   
+  .bin12 { grid-area: btn12; }   
+  .bin13 { grid-area: btn13; }   
+  .bin14 { grid-area: btn14; }   
+  .bin15 { grid-area: btn15; }     
+
+  #on {
+    border-radius: 50%;
+    background: #f5f5f5;
+  }
+  #off {
+    border-radius: 50%;
+    background: #808080;
+  }
+  </style>
+
+</head>
+
+<body>
+  <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+    <div class="container-fluid d-flex align-items-center">
+      <h1 class="d-flex align-items-center fs-4 text-white mb-0">진수변환기</h1>
+    </div>
+  </header>
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; height: 100vh;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <svg class="bi pe-none me-2" width="40" height="32">
+        <use xlink:href="#bootstrap" />
+      </svg>
+      <span class="fs-4">메뉴</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link text-white">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#table" />
+          </svg>
+          n진수 변환
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link active" aria-current="page">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#home" />
+          </svg>
+          이진수 변환
+        </a>
+      </li>
+      <li>
+        <a href="howtoConvert.html" class="nav-link text-white">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#table" />
+          </svg>
+          진수 변환 방법
+        </a>
+      </li>
+    </ul>
+    <hr>
+  </div>
+  <div id="content">
+    <div id ="bin_buttons">
+      <h3>이진수 입력</h3><br>
+      <div id="btn_wrapper">
+        <div class="btn bin0" id="off"></div>
+        <div class="btn bin1" id="off"></div>
+        <div class="btn bin2" id="off"></div>
+        <div class="btn bin3" id="off"></div>
+        <div class="btn bin4" id="off"></div>
+        <div class="btn bin5" id="off"></div>
+        <div class="btn bin6" id="off"></div>
+        <div class="btn bin7" id="off"></div>
+        <div class="btn bin8" id="off"></div>
+        <div class="btn bin9" id="off"></div>
+        <div class="btn bin10" id="off"></div>
+        <div class="btn bin11" id="off"></div>
+        <div class="btn bin12" id="off"></div>
+        <div class="btn bin13" id="off"></div>
+        <div class="btn bin14" id="off"></div>
+        <div class="btn bin15" id="off"></div>
+      </div>
+    </div><br>
+    <div id="output_result">
+      <div class="mb-3">
+        <label for="outputnumber" class="form-label" name="outputnum">결과값</label>
+        <input type="text" class="form-control" id="outputnum" readonly>
+      </div>
+    </div>
+
+    <script>
+      const btn0 = document.getElementsByClassName("bin0")[0]
+      const btn1 = document.getElementsByClassName("bin1")[0]
+      const btn2 = document.getElementsByClassName("bin2")[0]
+      const btn3 = document.getElementsByClassName("bin3")[0]
+      const btn4 = document.getElementsByClassName("bin4")[0]
+      const btn5 = document.getElementsByClassName("bin5")[0]
+      const btn6 = document.getElementsByClassName("bin6")[0]
+      const btn7 = document.getElementsByClassName("bin7")[0]
+      const btn8 = document.getElementsByClassName("bin8")[0]
+      const btn9 = document.getElementsByClassName("bin9")[0]
+      const btn10 = document.getElementsByClassName("bin10")[0]
+      const btn11 = document.getElementsByClassName("bin11")[0]
+      const btn12 = document.getElementsByClassName("bin12")[0]
+      const btn13 = document.getElementsByClassName("bin13")[0]
+      const btn14 = document.getElementsByClassName("bin14")[0]
+      const btn15 = document.getElementsByClassName("bin15")[0]
+      const outputnum = document.querySelector("#outputnum")
+      var result = 0
+
+      btn0.onclick = function() {
+        const ck_onf = btn0.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 1
+          btn0.setAttribute("id", "on")
+        }
+        else {
+          result -= 1
+          btn0.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn1.onclick = function() {
+        const ck_onf = btn1.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 2
+          btn1.setAttribute("id", "on")
+        }
+        else {
+          result -= 2
+          btn1.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+      
+      btn2.onclick = function() {
+        const ck_onf = btn2.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 4
+          btn2.setAttribute("id", "on")
+        }
+        else {
+          result -= 4
+          btn2.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn3.onclick = function() {
+        const ck_onf = btn3.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 8
+          btn3.setAttribute("id", "on")
+        }
+        else {
+          result -= 8
+          btn3.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn4.onclick = function() {
+        const ck_onf = btn4.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 16
+          btn4.setAttribute("id", "on")
+        }
+        else {
+          result -= 16
+          btn4.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn5.onclick = function() {
+        const ck_onf = btn5.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 32
+          btn5.setAttribute("id", "on")
+        }
+        else {
+          result -= 32
+          btn5.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn6.onclick = function() {
+        const ck_onf = btn6.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 64
+          btn6.setAttribute("id", "on")
+        }
+        else {
+          result -= 64
+          btn6.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn7.onclick = function() {
+        const ck_onf = btn7.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 128
+          btn7.setAttribute("id", "on")
+        }
+        else {
+          result -= 128
+          btn7.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn8.onclick = function() {
+        const ck_onf = btn8.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 256
+          btn8.setAttribute("id", "on")
+        }
+        else {
+          result -= 256
+          btn8.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn9.onclick = function() {
+        const ck_onf = btn9.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 512
+          btn9.setAttribute("id", "on")
+        }
+        else {
+          result -= 512
+          btn9.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn10.onclick = function() {
+        const ck_onf = btn10.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 1024
+          btn10.setAttribute("id", "on")
+        }
+        else {
+          result -= 1024
+          btn10.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn11.onclick = function() {
+        const ck_onf = btn11.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 2048
+          btn11.setAttribute("id", "on")
+        }
+        else {
+          result -= 2048
+          btn11.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn12.onclick = function() {
+        const ck_onf = btn12.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 4096
+          btn12.setAttribute("id", "on")
+        }
+        else {
+          result -= 4096
+          btn12.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn13.onclick = function() {
+        const ck_onf = btn13.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 8192
+          btn13.setAttribute("id", "on")
+        }
+        else {
+          result -= 8192
+          btn13.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn14.onclick = function() {
+        const ck_onf = btn14.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 16384
+          btn14.setAttribute("id", "on")
+        }
+        else {
+          result -= 16384
+          btn14.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+
+      btn15.onclick = function() {
+        const ck_onf = btn15.getAttribute("id")
+        if(ck_onf == "off") {
+          result += 32768
+          btn15.setAttribute("id", "on")
+        }
+        else {
+          result -= 32768
+          btn15.setAttribute("id", "off")
+        }
+        outputnum.value = result
+      }
+    </script>
+  </div>
+</body>
+</html>
