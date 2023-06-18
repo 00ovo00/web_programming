@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="../assets/js/color-modes.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.112.5">
+  <title>진수 변환기</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cheatsheet/">
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/cheatsheet.css" rel="stylesheet">
+  <link href="./css/sidebars.css" rel="stylesheet">
+  <style>
+    #content {
+      display: block;
+      margin-top: 20vh;
+      margin-left: 20vw;
+    }
+
+    .form-check {
+      display: inline-block;
+    }
+
+    .btn-primary {
+      display: block;
+      text-align: center;
+      position: relative;
+      left: 40%;
+      margin-top: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+    <div class="container-fluid d-flex align-items-center">
+      <h1 class="d-flex align-items-center fs-4 text-white mb-0">진수변환기</h1>
+    </div>
+  </header>
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; height: 100vh;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <svg class="bi pe-none me-2" width="40" height="32">
+        <use xlink:href="#bootstrap" />
+      </svg>
+      <span class="fs-4">메뉴</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link active" aria-current="page">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#home" />
+          </svg>
+          n진수 변환
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#speedometer2" />
+          </svg>
+          이진수 변환
+        </a>
+      </li>
+      <li>
+        <a href="howtoConvert.html" class="nav-link text-white">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#table" />
+          </svg>
+          진수 변환 방법
+        </a>
+      </li>
+    </ul>
+    <hr>
+  </div>
+  <div id="content">
+    <div class="bd-example-snippet bd-code-snippet">
+      <div class="bd-example m-0 border-0">
+        <form>
+          <div class="mb-3">
+            <label for="inputnumber" class="form-label" name="inputnum">바꿀 숫자</label>
+            <input type="text" class="form-control" id="inputnum" autofocus required>
+          </div>
+          <div class="base-radio">
+            <div class="form-check">
+              <input type="radio" name="inputbase" class="form-check-input" value="2">
+              <label class="form-check-label" for="bin">2진수</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" name="inputbase" class="form-check-input" value="8">
+              <label class="form-check-label" for="octal">8진수</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" name="inputbase" class="form-check-input" value="10" checked>
+              <label class="form-check-label" for="dec">10진수</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" name="inputbase" class="form-check-input" value="16">
+              <label class="form-check-label" for="hex">16진수</label>
+            </div>
+          </div><br><br>
+          <div class="mb-3">
+            <label for="outputnumber" class="form-label" name="outputnum">결과값</label>
+            <input type="text" class="form-control" id="outputnum" readonly>
+          </div>
+          <div class="base-radio">
+            <div class="form-check">
+              <input type="radio" name="outputbase" class="form-check-input" value="2" checked>
+              <label class="form-check-label" for="bin">2진수</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" name="outputbase" class="form-check-input" value="8">
+              <label class="form-check-label" for="octal">8진수</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" name="outputbase" class="form-check-input" value="10">
+              <label class="form-check-label" for="dec">10진수</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" name="outputbase" class="form-check-input" value="16">
+              <label class="form-check-label" for="hex">16진수</label>
+            </div>
+          </div>
+        </div>
+        <input type="button" class="btn btn-primary" name="convert" value="바꾸기">
+      </form>
+    </div>
+  </div>
+
+  <script>
+      const btn = document.getElementsByName("convert")[0];
+      btn.onclick = process;
+      function process() {
+        const inputnum = document.querySelector("#inputnum");
+        const outputnum = document.querySelector("#outputnum");
+        const inputbaseNodeList = document.getElementsByName("inputbase")
+        const outputbaseNodeList = document.getElementsByName("outputbase")
+        var temp
+        
+        inputbaseNodeList.forEach((node) => {
+          if(node.checked) {
+           const inputbase = node.value
+           temp = parseInt(inputnum.value, inputbase)
+          }
+        })
+        outputbaseNodeList.forEach((node) => {
+          if(node.checked) {
+           const outputbase = node.value
+           temp = temp.toString(outputbase)
+          }
+        })
+        outputnum.value = temp;
+      }
+  </script>
+</body>
+
+</html>
